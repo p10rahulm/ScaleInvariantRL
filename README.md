@@ -14,7 +14,15 @@ The requirements needed to run the algorithms are
 - `numpy` (we use version 1.20.1)
 - `matplotlib` (we use version 3.3.4) 
 
-Other versions of these should work just fine, as long as you use Python 3
+
+Other versions of these should work just fine, as long as you use Python 3. 
+These files are included in requirements.txt. For manually loading these libraries, 
+one can type the following commands from a `pip` enabled shell
+
+    pip install numpy
+    pip install matplotlib
+    
+
 ## Core Pipeline
 
 When you call `interface.py`, the pipeline uses the following files
