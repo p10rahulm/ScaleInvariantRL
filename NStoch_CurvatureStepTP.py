@@ -22,12 +22,12 @@ def runTP_Sims(A_input, b_input, x_input, probDist, maxIters, errorType=0, utTyp
     while iters < maxIters:
         tp1 = TPCore.TPAlgo(A_proc, b_proc, x_proc)
         tp2 = TPCore.TPAlgo(A_proc, b_proc, tp1)
-        dTP1 = tp1 - x_proc
-        dTP2 = tp2 - tp1
-        ddTP = dTP2 - dTP1
-        kappa = utils.twoNorm(ddTP) / utils.twoNorm(dTP1)
-        alpha = 1 / kappa
-        x_proc = x_proc + alpha * (tp1 - x_proc)
+        dTP1 = tp1 - x_proc                                 # r'(t)
+        dTP2 = tp2 - tp1                                    # r'(t+1)
+        ddTP = dTP2 - dTP1                                  # r''(t)
+        kappa = utils.twoNorm(ddTP) / utils.twoNorm(dTP1)   # ||r''(t)||/||r'(t)||
+        alpha = 1 / kappa                                   # ||r'(t)||/||r''(t)||
+        x_proc = x_proc + alpha * (tp1 - x_proc)            # ||r'(t)||/||r''(t)|| * r'(t)
 
         errors[iters] = errorCalcs.getErrorMethod(A_proc, b_proc, x_proc, probDist, errorType, norm=2)
         iters += 1
